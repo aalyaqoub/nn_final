@@ -41,6 +41,11 @@
       rel="stylesheet"
     />
     <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-csp.js"
+      id="MathJax-script"
+      async
+    ></script>
   </head>
   <body class="nd-docs">
     <div class="nd-pageheader">
@@ -60,7 +65,7 @@
           <div class="container text-center">
             <img
               src="images/ErasingShowcase.png"
-              alt="External Image"
+              alt="ErasingShowcase"
               style="width: 700px"
             />
           </div>
@@ -85,6 +90,60 @@
             attention layers to remove targeted concepts like artists styles or
             non-cross attention layers to erase global concepts like cars.
           </p>
+          <h4>Mathmatical reasoning behind erasure:</h4>
+          <div class="container text-center">
+            <img
+              src="images/MathOverView.png"
+              alt="CompleteMathOveriew"
+              style="width: 850px"
+            />
+          </div>
+          <ul>
+            <li>
+              <img
+                src="images/math/VanNoGeneral.png"
+                alt="External Image"
+                style="width: 200px"
+              />
+              The following represents the predicted noise of Van Gogh with
+              general noise
+              <img
+                src="images/math/VanWithGeneral.png"
+                alt="External Image"
+                style="width: 90px"
+              />
+              minus the genreal noise
+              <img
+                src="images/math/General.png"
+                alt="External Image"
+                style="width: 70px"
+              />
+              . <b>This leaves us with the predicted noise of just Van Gogh.</b>
+            </li>
+            <li>
+              <img
+                src="images/math/GeneralNoVan.png"
+                alt="External Image"
+                style="width: 290px"
+              />
+              The following represents the general noise
+              <img
+                src="images/math/General.png"
+                alt="External Image"
+                style="width: 70px"
+              />
+              minus the predicted noice of just Van Gogh.
+              <b>
+                This leaves us with the noise of everything but Van Gogh. This
+                is our objective that the model is trying to reach.
+              </b>
+            </li>
+            <li>
+              Now we arrive at our loss objective. The goal is to minimise the
+              predicted noise of Van Gogh and maximize the noise of everything
+              but Van Gogh.
+            </li>
+          </ul>
           <h2>Testing Points</h2>
           <ul>
             <li>
