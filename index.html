@@ -244,7 +244,39 @@
             concept and interference with other visual concepts.
           </p>
           <h2>Methods</h2>
+          <ul>
+            <li>
+              To test out the models effect on different model sizes, we used
+              the following
+              <a href="https://huggingface.co/OFA-Sys/small-stable-diffusion-v0"
+                >small stable diffusion</a
+              >
+              and
+              <a href="https://huggingface.co/lambdalabs/miniSD-diffusers"
+                >mini stable diffusion</a
+              >
+              models which are smaller implementations of stable diffusion.
+            </li>
+          </ul>
           <h2>Results</h2>
+          <ul>
+            <li>
+              Preliminary findings on the effects on differnt model sizes: We
+              tested the erasure of the object "car" on the normal, small, mini
+              models and found that the smaller models struggled with removing
+              the object. On the mini model, when removing the object with no
+              cross attention, the fine tuning process messed up the model
+              weights to the point that the model was unable to generate any
+              images.
+              <div class="container text-center">
+                <img
+                  src="images/CursedNoxatten.png"
+                  alt="CursedNoxattenMini"
+                  style="width: 350px"
+                />
+              </div>
+            </li>
+          </ul>
           <h2>Conclusion</h2>
         </div>
       </div>
