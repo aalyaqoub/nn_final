@@ -63,7 +63,12 @@
           <div class="justify-content-center text-center">
             <h1>An Analysis of "Erasing Concepts from Diffusion Models"</h1>
             <p>By: Ali Alyaqoub and Adam Belfki</p>
-            <p>Original Paper Link: <a href="https://erasing.baulab.info">Erasing Concepts from Diffusion Models</a></p>
+            <p>
+              Original Paper Link:
+              <a href="https://erasing.baulab.info"
+                >Erasing Concepts from Diffusion Models</a
+              >
+            </p>
           </div>
         </div>
         <div>
@@ -76,53 +81,62 @@
           </div>
           <h2>Introduction</h2>
           <p>
-            Significant recent advancements in the field of GenAI have been achieved with 
-            Diffusion Models for image generation. Hence, many efforts have been deployed 
-            to ensure the generation of appropriate content by avoiding NSFW images 
-            and addressing copy-right issues. A number of solutions 
-            have been proposed to tackle this problem with different approaches 
-            centered around filtering, during either pre-training or post-generation.</p>
+            Significant recent advancements in the field of GenAI have been
+            achieved with Diffusion Models for image generation. Hence, many
+            efforts have been deployed to ensure the generation of appropriate
+            content by avoiding NSFW images and addressing copy-right issues. A
+            number of solutions have been proposed to tackle this problem with
+            different approaches centered around filtering, during either
+            pre-training or post-generation.
+          </p>
           <p>
-            In this project we decide to look into a novel method focused on 
-            fine-tuning diffusion models using negative guidance as a teacher for 
-            the erasure of concepts, which has proven to be more effective than 
-            the aforementioned techniques. Most specifically, we are interested in 
-            answering the following questions: 
+            In this project we decide to look into a novel method focused on
+            fine-tuning diffusion models using negative guidance as a teacher
+            for the erasure of concepts, which has proven to be more effective
+            than the aforementioned techniques. Most specifically, we are
+            interested in answering the following questions:
           </p>
           <ul>
             <li>
-              Does this method produce different results on different model sizes? And what 
-              could be the ramifications of "forgetting" on smaller models? 
+              Does this method produce different results on different model
+              sizes? And what could be the ramifications of "forgetting" on
+              smaller models?
             </li>
             <li>
-              How does the erasure perform when the fine-tuning operation is conducted using 
-              unseen data? Is erasure reliant on generalization?
+              How does the erasure perform when the fine-tuning operation is
+              conducted using unseen data? Is erasure reliant on generalization?
             </li>
             <li>
-              By erasing a concept, is the model completely unlearning it or is it simply 
-              being suppressed from being expressed? In either case, how easy is it to relearn 
-              an erased concept? Does it require the same original training effort?
+              By erasing a concept, is the model completely unlearning it or is
+              it simply being suppressed from being expressed? In either case,
+              how easy is it to relearn an erased concept? Does it require the
+              same original training effort? Does it produce images of the same
+              quality?
             </li>
           </ul>
           <h2>Paper Overview</h2>
           <p>
-            The paper at hand proposes a method to remove concepts permanently from a diffusion 
-            model which makes it very hard to circumvent even if the user has access to the model 
-            weights. Previous methods based on filtering datasets are fundamentally costly and not 
-            flexible to problems discovered after training while filtering generated content can 
-            have unintended consequences on the output quality. 
+            The paper at hand proposes a method to remove concepts permanently
+            from a diffusion model which makes it very hard to circumvent even
+            if the user has access to the model weights. Previous methods based
+            on filtering datasets are fundamentally costly and not flexible to
+            problems discovered after training while filtering generated content
+            can have unintended consequences on the output quality.
           </p>
           <p>
-            To address these issues, ESD relies on fine-tuning pre-trained diffusion models to 
-            minimize the probability of generating certain images linked to a targeted concept 
-            and using no additional data. The fine-tuning process involves using several instances 
-            of the model with one set of parameters frozen while training the other set of 
-            parameters to erase the concept. Partially de-noised images,  constrained by the 
-            concept, are sampled from the training model while inference is performed twice on 
-            the frozen  model to predict noise both conditioned and unconditioned on the prompt 
-            which combined to negate the predicted noise associated with the targeted concept. 
-            This technique modifies the scoring function to move the data distribution to 
-            minimize the generation images that can be labeled with the targeted prompt.
+            To address these issues, ESD relies on fine-tuning pre-trained
+            diffusion models to minimize the probability of generating certain
+            images linked to a targeted concept and using no additional data.
+            The fine-tuning process involves using several instances of the
+            model with one set of parameters frozen while training the other set
+            of parameters to erase the concept. Partially de-noised images,
+            constrained by the concept, are sampled from the training model
+            while inference is performed twice on the frozen model to predict
+            noise both conditioned and unconditioned on the prompt which
+            combined to negate the predicted noise associated with the targeted
+            concept. This technique modifies the scoring function to move the
+            data distribution to minimize the generation images that can be
+            labeled with the targeted prompt.
           </p>
           <div class="container text-center">
             <img
@@ -139,8 +153,7 @@
                 alt="External Image"
                 style="width: 200px"
               />
-              represents the predicted noise of Van Gogh with
-              general noise
+              represents the predicted noise of Van Gogh with general noise
               <img
                 src="images/math/VanWithGeneral.png"
                 alt="External Image"
@@ -179,50 +192,56 @@
             </li>
           </ul>
           <p>
-            The degree of success attributed to the erasure of a concept depends 
-            on the subset of parameters fine-tuned with a main distinction 
-            between cross-attention and non-cross-attention parameters. In the 
-            paper, ESD-x refers to the process of fine-tuning the cross-attention 
-            parameters which is used to perform controlled erasure specific to 
-            the prompt. This method has demonstrated impressive results for 
-            specific artistic style removal. On the other hand, ESD-u refers to 
-            non-cross-attention fine-tuned parameters which tend to contribute to 
-            a broader range of visual concepts when the erasure is required to be 
-            independent of the text in the prompt which is crucial for the 
-            generation of nudity free content. 
+            The degree of success attributed to the erasure of a concept depends
+            on the subset of parameters fine-tuned with a main distinction
+            between cross-attention and non-cross-attention parameters. In the
+            paper, ESD-x refers to the process of fine-tuning the
+            cross-attention parameters which is used to perform controlled
+            erasure specific to the prompt. This method has demonstrated
+            impressive results for specific artistic style removal. On the other
+            hand, ESD-u refers to non-cross-attention fine-tuned parameters
+            which tend to contribute to a broader range of visual concepts when
+            the erasure is required to be independent of the text in the prompt
+            which is crucial for the generation of nudity free content.
           </p>
           <p>
-            The experimental study for this solution on its artistic style 
-            removal capabilities involved erasing 5 modern artists and conducting 
-            a user study to measure the human perception of the effectiveness of 
-            the fine-tuned model compared to other approaches. The study showed 
-            that ESD-x had superior results demonstrated by its ability to erase 
-            the intended style better but also to keep minimum interference with 
-            the other styles. The performance of ESD-u-n for removing explicit 
-            content was measure against SLD and SD V.20 and showed that the 
-            method proposed in this paper outperforms both inference methods 
-            and models trained on filtered datasets.
-          </p>  
-          <div class="row" style="display: table-row;">
-            <div class="col justify-content-center text-center" style="display: table-cell; vertical-align: middle;">
+            The experimental study for this solution on its artistic style
+            removal capabilities involved erasing 5 modern artists and
+            conducting a user study to measure the human perception of the
+            effectiveness of the fine-tuned model compared to other approaches.
+            The study showed that ESD-x had superior results demonstrated by its
+            ability to erase the intended style better but also to keep minimum
+            interference with the other styles. The performance of ESD-u-n for
+            removing explicit content was measure against SLD and SD V.20 and
+            showed that the method proposed in this paper outperforms both
+            inference methods and models trained on filtered datasets.
+          </p>
+          <div class="row" style="display: table-row">
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
               <img
-              src="images/ESD_art_performance.png"
-              alt="ESD art performance"
-              style="width: 400px"
+                src="images/ESD_art_performance.png"
+                alt="ESD art performance"
+                style="width: 400px"
               />
             </div>
-            <div class="col justify-content-center text-center" style="display: table-cell; vertical-align: middle;">
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
               <img
-              src="images/ESD_NSFW_performance.png"
-              alt="ESD NSFW performance"
-              style="width: 700px"
+                src="images/ESD_NSFW_performance.png"
+                alt="ESD NSFW performance"
+                style="width: 700px"
               />
             </div>
           </div>
           <p>
-            Erasing an entire object class still involves some limitations 
-            represented by a trade-off between complete erasure of a visual 
-            concept and interference with other visual concepts. 
+            Erasing an entire object class still involves some limitations
+            represented by a trade-off between complete erasure of a visual
+            concept and interference with other visual concepts.
           </p>
           <h2>Methods</h2>
           <h2>Results</h2>
@@ -236,10 +255,12 @@
           <p>
             <a name="gandikota-2023">[1]</a>
             <a href="https://arxiv.org/pdf/2303.07345.pdf">
-              Rohit Gandikota, Joanna Materzyńska, Jaden Fiotto-Kaufman, David Bau. 
-              <em>Erasing Concepts from Diffusion Models.</em> 
+              Rohit Gandikota, Joanna Materzyńska, Jaden Fiotto-Kaufman, David
+              Bau.
+              <em>Erasing Concepts from Diffusion Models.</em>
             </a>
-            Proceedings of the 2023 IEEE International Conference on Computer Vision (ICCV 2023).
+            Proceedings of the 2023 IEEE International Conference on Computer
+            Vision (ICCV 2023).
           </p>
 
           <h2>Team Members</h2>
