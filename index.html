@@ -244,40 +244,64 @@
             concept and interference with other visual concepts.
           </p>
           <h2>Methods</h2>
-          <ul>
-            <li>
+            <p>
               To test out the models effect on different model sizes, we used
-              the following
-              <a href="https://huggingface.co/OFA-Sys/small-stable-diffusion-v0"
-                >small stable diffusion</a
-              >
-              and
-              <a href="https://huggingface.co/lambdalabs/miniSD-diffusers"
-                >mini stable diffusion</a
-              >
-              models which are smaller implementations of stable diffusion.
-            </li>
-          </ul>
+            the following
+            <a href="https://huggingface.co/OFA-Sys/small-stable-diffusion-v0"
+              >small stable diffusion</a
+            >
+            and
+            <a href="https://huggingface.co/lambdalabs/miniSD-diffusers"
+              >mini stable diffusion</a
+            >
+            models which are smaller implementations of Stable Diffusion.
+            Our method consits of erasing the same concept from each model along 
+            side the <a href="https://huggingface.co/CompVis/stable-diffusion-v-1-4-original">SD-V1.4</a> model originally employed by the paper and then 
+            analyze the impact of erasing object on the model through inference 
+            with multiple prompts with related to the concept being erased.
+            </p>
+          <div class="text-center">
+            <img src="images/Inference_code.png"
+            alt="Inference code"
+            style="width: 700px"/>
+          </div>
           <h2>Results</h2>
           <ul>
             <li>
-              Preliminary findings on the effects on differnt model sizes: We
-              tested the erasure of the object "car" on the normal, small, mini
+              Our Preliminary findings show that erasing concepts via ESD-u can 
+              have a much severe affect on the ability of the model to generate images. 
+              We tested the erasure of the object "car" on the normal, small, mini
               models and found that the smaller models struggled with removing
-              the object. On the mini model, when removing the object with no
-              cross attention, the fine tuning process messed up the model
-              weights to the point that the model was unable to generate any
-              images.
-              <div class="container text-center">
-                <img
-                  src="images/CursedNoxatten.png"
-                  alt="CursedNoxattenMini"
-                  style="width: 350px"
-                />
-              </div>
+              the object. For the mini model, removing the object by fine-tuning 
+              the non-cross attention parameters caused the model to lose its ability to generate proper images and content.
             </li>
           </ul>
-          <h2>Conclusion</h2>
+          <div class="row" style="display: table-row">
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/mini-SD-original.jpg"
+                alt="Original Mini SD image"
+                style="width: 400px"
+              />
+            </div>
+            <div class="col justify-content-center text-center"
+               style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/CursedNoxatten.png"
+                alt="CursedNoxattenMini"
+                style="width: 500px"
+              />
+            </div>
+          </div>
+          <div class="text-center">
+            <p>
+              "A car zooming through space at the speed of light."
+            </p>
+          </div>
         </div>
       </div>
       <div class="row">
