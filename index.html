@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Forgetting or Supressing</title>
+    <title>Forgetting or Suppressing</title>
     <meta property="og:title" content=Your Project Name" />
     <meta name="twitter:title" content="Your Project Name" />
     <meta
@@ -51,8 +51,7 @@
     <div class="nd-pageheader">
       <div class="container">
         <h1 class="lead">
-          <nobr class="widenobr">Forgetting or Supressing</nobr>
-          <nobr class="widenobr">For DS 4440</nobr>
+          <nobr class="widenobr">Forgetting or Suppressing</nobr>
         </h1>
       </div>
     </div>
@@ -61,7 +60,13 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1>An Analysis of Erasing Concepts from Diffusion Models</h1>
+          <div class="justify-content-center text-center">
+            <h1>An Analysis of "Erasing Concepts from Diffusion Models"</h1>
+            <p>By: Ali Alyaqoub and Adam Belfki</p>
+            <p>Original Paper Link: <a href="https://erasing.baulab.info">Erasing Concepts from Diffusion Models</a></p>
+          </div>
+        </div>
+        <div>
           <div class="container text-center">
             <img
               src="images/ErasingShowcase.png"
@@ -69,28 +74,56 @@
               style="width: 700px"
             />
           </div>
+          <h2>Introduction</h2>
+          <p>
+            Significant recent advancements in the field of GenAI have been achieved with 
+            Diffusion Models for image generation. Hence, many efforts have been deployed 
+            to ensure the generation of appropriate content by avoiding NSFW images 
+            and addressing copy-right issues. A number of solutions 
+            have been proposed to tackle this problem with different approaches 
+            centered around filtering, during either pre-training or post-generation.</p>
+          <p>
+            In this project we decide to look into a novel method focused on 
+            fine-tuning diffusion models using negative guidance as a teacher for 
+            the erasure of concepts, which has proven to be more effective than 
+            the aforementioned techniques. Most specifically, we are interested in 
+            answering the following questions: 
+          </p>
+          <ul>
+            <li>
+              Does this method produce different results on different model sizes? And what 
+              could be the ramifications of "forgetting" on smaller models? 
+            </li>
+            <li>
+              How does the erasure perform when the fine-tuning operation is conducted using 
+              unseen data? Is erasure reliant on generalization?
+            </li>
+            <li>
+              By erasing a concept, is the model completely unlearning it or is it simply 
+              being suppressed from being expressed? In either case, how easy is it to relearn 
+              an erased concept? Does it require the same original training effort?
+            </li>
+          </ul>
           <h2>Paper Overview</h2>
           <p>
-            Diffusion models are trained on vast amounts of random images from
-            the internets, and as a result, they produce undesirable things like
-            styles of nonconsenting artists or NSFW content. Previous methods
-            for removing concepts from models were either too expensive or easy
-            to circumvent. Training on cleaned datasets requires costly
-            retraining of models. And post generation filtering, similar to the
-            one deployed by Stable Diffusion, are easy to bypass by novice
-            tinkerers.
+            The paper at hand proposes a method to remove concepts permanently from a diffusion 
+            model which makes it very hard to circumvent even if the user has access to the model 
+            weights. Previous methods based on filtering datasets are fundamentally costly and not 
+            flexible to problems discovered after training while filtering generated content can 
+            have unintended consequences on the output quality. 
           </p>
           <p>
-            This paper introduces a new method to finetune models such that
-            undesirable concepts can be removed from the model post training.
-            The model achieves this by introducing a new constraint with the
-            goal of minimizing outputs of a particular class or concept. There
-            are two ways to apply these new constraints, on cross attention
-            layers or non-cross attention layers. They can be applied at cross
-            attention layers to remove targeted concepts like artists styles or
-            non-cross attention layers to erase global concepts like cars.
+            To address these issues, ESD relies on fine-tuning pre-trained diffusion models to 
+            minimize the probability of generating certain images linked to a targeted concept 
+            and using no additional data. The fine-tuning process involves using several instances 
+            of the model with one set of parameters frozen while training the other set of 
+            parameters to erase the concept. Partially de-noised images,  constrained by the 
+            concept, are sampled from the training model while inference is performed twice on 
+            the frozen  model to predict noise both conditioned and unconditioned on the prompt 
+            which combined to negate the predicted noise associated with the targeted concept. 
+            This technique modifies the scoring function to move the data distribution to 
+            minimize the generation images that can be labeled with the targeted prompt.
           </p>
-          <h4>Mathmatical reasoning behind erasure:</h4>
           <div class="container text-center">
             <img
               src="images/MathOverview.png"
@@ -98,6 +131,7 @@
               style="width: 850px"
             />
           </div>
+          <h5>Mathematical reasoning behind erasure:</h5>
           <ul>
             <li>
               <img
@@ -105,7 +139,7 @@
                 alt="External Image"
                 style="width: 200px"
               />
-              The following represents the predicted noise of Van Gogh with
+              represents the predicted noise of Van Gogh with
               general noise
               <img
                 src="images/math/VanWithGeneral.png"
@@ -126,7 +160,7 @@
                 alt="External Image"
                 style="width: 290px"
               />
-              The following represents the general noise
+              represents the general noise
               <img
                 src="images/math/General.png"
                 alt="External Image"
@@ -144,31 +178,54 @@
               but Van Gogh.
             </li>
           </ul>
-          <h2>Testing Points</h2>
-          <ul>
-            <li>
-              Can you relearn something? If so, it would still not be safe to
-              release the weights. Is the relearn concept of the same quality
-              compared with the quality of pre-fine tuning.
-            </li>
-            <li>
-              Does this method have different effects on different model sizes?
-              Are the ramifications of “forgetting” more severe for smaller
-              models?
-            </li>
-            <li>
-              Is the model “unlearning” concepts or is it simply suppressing
-              knowledge from being expressed? - Can this be tested by how easy
-              it is for it to relearn something vs learn something new? (How can
-              we test its learning new things)
-            </li>
-            <li>
-              If we use images that the model is not trained on, is the erasure
-              still good? Benchmark if erasure is reliant on generalization.
-            </li>
-          </ul>
-          <h2>Testing Methods</h2>
-          <h2>Testing Results</h2>
+          <p>
+            The degree of success attributed to the erasure of a concept depends 
+            on the subset of parameters fine-tuned with a main distinction 
+            between cross-attention and non-cross-attention parameters. In the 
+            paper, ESD-x refers to the process of fine-tuning the cross-attention 
+            parameters which is used to perform controlled erasure specific to 
+            the prompt. This method has demonstrated impressive results for 
+            specific artistic style removal. On the other hand, ESD-u refers to 
+            non-cross-attention fine-tuned parameters which tend to contribute to 
+            a broader range of visual concepts when the erasure is required to be 
+            independent of the text in the prompt which is crucial for the 
+            generation of nudity free content. 
+          </p>
+          <p>
+            The experimental study for this solution on its artistic style 
+            removal capabilities involved erasing 5 modern artists and conducting 
+            a user study to measure the human perception of the effectiveness of 
+            the fine-tuned model compared to other approaches. The study showed 
+            that ESD-x had superior results demonstrated by its ability to erase 
+            the intended style better but also to keep minimum interference with 
+            the other styles. The performance of ESD-u-n for removing explicit 
+            content was measure against SLD and SD V.20 and showed that the 
+            method proposed in this paper outperforms both inference methods 
+            and models trained on filtered datasets.
+          </p>  
+          <div class="row" style="display: table-row;">
+            <div class="col justify-content-center text-center" style="display: table-cell; vertical-align: middle;">
+              <img
+              src="images/ESD_art_performance.png"
+              alt="ESD art performance"
+              style="width: 400px"
+              />
+            </div>
+            <div class="col justify-content-center text-center" style="display: table-cell; vertical-align: middle;">
+              <img
+              src="images/ESD_NSFW_performance.png"
+              alt="ESD NSFW performance"
+              style="width: 700px"
+              />
+            </div>
+          </div>
+          <p>
+            Erasing an entire object class still involves some limitations 
+            represented by a trade-off between complete erasure of a visual 
+            concept and interference with other visual concepts. 
+          </p>
+          <h2>Methods</h2>
+          <h2>Results</h2>
           <h2>Conclusion</h2>
         </div>
       </div>
