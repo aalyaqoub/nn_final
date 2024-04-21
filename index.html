@@ -244,9 +244,10 @@
             concept and interference with other visual concepts.
           </p>
           <h2>Methods</h2>
-            <p>
-              To test out the models effect on different model sizes, we used
-            the following
+          <h3>Effect on Smaller Models</h3>
+          <p>
+            To test out the models effect on different model sizes, we used the
+            following
             <a href="https://huggingface.co/OFA-Sys/small-stable-diffusion-v0"
               >small stable diffusion</a
             >
@@ -254,26 +255,49 @@
             <a href="https://huggingface.co/lambdalabs/miniSD-diffusers"
               >mini stable diffusion</a
             >
-            models which are smaller implementations of Stable Diffusion.
-            Our method consits of erasing the same concept from each model along 
-            side the <a href="https://huggingface.co/CompVis/stable-diffusion-v-1-4-original">SD-V1.4</a> model originally employed by the paper and then 
-            analyze the impact of erasing object on the model through inference 
-            with multiple prompts with related to the concept being erased.
-            </p>
+            models which are smaller implementations of Stable Diffusion. Our
+            method consits of erasing the same concept from each model along
+            side the
+            <a
+              href="https://huggingface.co/CompVis/stable-diffusion-v-1-4-original"
+              >SD-V1.4</a
+            >
+            model originally employed by the paper and then analyze the impact
+            of erasing object on the model through inference with multiple
+            prompts with related to the concept being erased.
+          </p>
           <div class="text-center">
-            <img src="images/Inference_code.png"
-            alt="Inference code"
-            style="width: 700px"/>
+            <img
+              src="images/Inference_code.png"
+              alt="Inference code"
+              style="width: 700px"
+            />
           </div>
+          <h3>Relearning Concepts</h3>
+          <p>
+            We theorize that the model is not completely unlearning a particular
+            concept, but rather suppressing it from being expressed by making
+            the probability of generating images with the concept very low.
+            Since the concept that was erased is still present in the model, it
+            could be possible to relearn concepts by fine-tuning the model with
+            the same objective as the erasure process, but with a constrait that
+            prioritizes the generation of images with the concept we desire. A
+            traditional way to relearn the concept would be to fine-tune the
+            model with data of the concept you desire to relearn. The method we
+            are testing has the benefit of not requiring training data of the
+            concept that was erased as the model will depend on the suppressed
+            knowledge of the concept already in its weights.
+          </p>
           <h2>Results</h2>
           <ul>
             <li>
-              Our Preliminary findings show that erasing concepts via ESD-u can 
-              have a much severe affect on the ability of the model to generate images. 
-              We tested the erasure of the object "car" on the normal, small, mini
-              models and found that the smaller models struggled with removing
-              the object. For the mini model, removing the object by fine-tuning 
-              the non-cross attention parameters caused the model to lose its ability to generate proper images and content.
+              Our Preliminary findings show that erasing concepts via ESD-u can
+              have a much severe affect on the ability of the model to generate
+              images. We tested the erasure of the object "car" on the normal,
+              small, mini models and found that the smaller models struggled
+              with removing the object. For the mini model, removing the object
+              by fine-tuning the non-cross attention parameters caused the model
+              to lose its ability to generate proper images and content.
             </li>
           </ul>
           <div class="row" style="display: table-row">
@@ -287,8 +311,9 @@
                 style="width: 400px"
               />
             </div>
-            <div class="col justify-content-center text-center"
-               style="display: table-cell; vertical-align: middle"
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
             >
               <img
                 src="images/CursedNoxatten.png"
@@ -298,9 +323,7 @@
             </div>
           </div>
           <div class="text-center">
-            <p>
-              "A car zooming through space at the speed of light."
-            </p>
+            <p>"A car zooming through space at the speed of light."</p>
           </div>
         </div>
       </div>
