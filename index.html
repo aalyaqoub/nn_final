@@ -266,6 +266,10 @@
             of erasing object on the model through inference with multiple
             prompts with related to the concept being erased.
           </p>
+          <b
+            >TALK ABOUT IF THE ARCHITETURE IS THE SAME.TALK ABOUT THE NUMBER OF
+            PARAMETERS IN EACH.</b
+          >
           <div class="text-center">
             <img
               src="images/Inference_code.png"
@@ -295,6 +299,31 @@
               style="width: 850px"
             />
           </div>
+          <ul>
+            <li>
+              To test this theory out, we will initialize our forzen model to be
+              the model that had the concept erased.
+            </li>
+            <li>
+              From this forzen model we will grab the predicted noise of the
+              desired concept
+              <img
+                src="images/math/RelearnVanNoGeneral.png"
+                alt="External Image"
+                style="width: 200px"
+              />.
+            </li>
+            <li>
+              The predicted noise of the concept will be combined with the
+              general noise
+              <img
+                src="images/math/RelearnVanWithGeneral.png"
+                alt="External Image"
+                style="width: 300px"
+              />. This is will represent the goal the model is trying to reach.
+            </li>
+          </ul>
+
           <h2>Results</h2>
           <h3>Effect on Smaller Models</h3>
           <p>
@@ -428,10 +457,14 @@
           </div>
         </div>
       </div>
+      <h3>Conclusion</h3>
+      <p>
+        Summarize your conclusions, including any implications for applications
+        or impacts on society, or ideas for future work.
+      </p>
       <div class="row">
         <div class="col">
           <h3>References</h3>
-
           <p>
             <a name="gandikota-2023">[1]</a>
             <a href="https://arxiv.org/pdf/2303.07345.pdf">
