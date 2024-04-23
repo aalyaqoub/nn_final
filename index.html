@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <title>Forgetting or Suppressing</title>
-    <meta property="og:title" content=Your Project Name" />
-    <meta name="twitter:title" content="Your Project Name" />
+    <meta property="og:title" content="Forgetting or Suppressing" />
+    <meta name="twitter:title" content="Forgetting or Suppressing" />
     <meta
       name="description"
-      content="Your project about your cool topic described right here."
+      content='An Analysis of "Erasing Concepts from Diffusion Models"'
     />
     <meta
       property="og:description"
-      content="Your project about your cool topic described right here."
+      content='An Analysis of "Erasing Concepts from Diffusion Models"'
     />
     <meta
       name="twitter:description"
-      content="Your project about your cool topic described right here."
+      content='An Analysis of "Erasing Concepts from Diffusion Models"'
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
@@ -145,7 +145,7 @@
               style="width: 850px"
             />
           </div>
-          <h5>Mathematical reasoning behind erasure:</h5>
+          <h3>Mathematical reasoning behind erasure:</h3>
           <ul>
             <li>
               <img
@@ -455,35 +455,129 @@
               </p>
             </div>
           </div>
-        </div>
-      </div>
-      <h3>Conclusion</h3>
-      <p>
-        Summarize your conclusions, including any implications for applications
-        or impacts on society, or ideas for future work.
-      </p>
-      <div class="row">
-        <div class="col">
-          <h3>References</h3>
+          <h3>Relearning</h3>
           <p>
-            <a name="gandikota-2023">[1]</a>
-            <a href="https://arxiv.org/pdf/2303.07345.pdf">
-              Rohit Gandikota, Joanna Materzyńska, Jaden Fiotto-Kaufman, David
-              Bau.
-              <em>Erasing Concepts from Diffusion Models.</em>
-            </a>
-            Proceedings of the 2023 IEEE International Conference on Computer
-            Vision (ICCV 2023).
+            When we attempted to relearn the concept of Van Gogh and the object
+            car we found that the models were not able to resurface the
+            information that was removed. We believe this is the case because
+            after the original epochs to erase the concept from the model the
+            predicted noise of the concept is so low that relearning the concept
+            from it does not effect the overall model much.
           </p>
+          <p>
+            <b>Prompt:</b> "A car zooming through space at the speed of
+            light."<br />
+            <b>Relearn Method:</b> "car" using ESD-u
+          </p>
+          <div class="container-fluid">
+            <div class="row justify-content-center" style="display: table-row">
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/car-SD.png"
+                  alt="Car SD"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">Original SD</p>
+              </div>
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/car-ESD-u.png"
+                  alt="Car ESD-u"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">SD with car erased using ESD-u</p>
+              </div>
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/car-relearn.png"
+                  alt="Mini SD"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">Relearn car</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            <b>Prompt:</b> "A cat by a windows Van Gogh style."<br />
+            <b>Relearn Method:</b> "Van Gogh" using ESD-x
+          </p>
+          <div class="container-fluid">
+            <div class="row justify-content-center" style="display: table-row">
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/van-gogh-SD.png"
+                  alt="Van Gogh SD"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">Original SD</p>
+              </div>
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/van-gogh-ESD-x.png"
+                  alt="Van Gogh ESD-x"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">
+                  SD with Van Gogh erased using ESD-x
+                </p>
+              </div>
+              <div
+                class="col-4 justify-content-center text-center"
+                style="display: table-cell; vertical-align: middle"
+              >
+                <img
+                  src="images/image_outputs/relearn-van-gogh.png"
+                  alt="Mini SD"
+                  style="width: 270px"
+                />
+                <p style="font-size: 12px">Relearn Van Gogh</p>
+              </div>
+            </div>
+          </div>
+          <h3>Conclusion</h3>
+          <p>
+            Summarize your conclusions, including any implications for
+            applications or impacts on society, or ideas for future work.
+          </p>
+          <div class="row">
+            <div class="col">
+              <h3>References</h3>
+              <p>
+                <a name="gandikota-2023">[1]</a>
+                <a href="https://arxiv.org/pdf/2303.07345.pdf">
+                  Rohit Gandikota, Joanna Materzyńska, Jaden Fiotto-Kaufman,
+                  David Bau.
+                  <em>Erasing Concepts from Diffusion Models.</em>
+                </a>
+                Proceedings of the 2023 IEEE International Conference on
+                Computer Vision (ICCV 2023).
+              </p>
 
-          <h2>Team Members</h2>
+              <h2>Team Members</h2>
 
-          <p>Ali Alyaqoub | alyaqoub.a@northeastern.edu</p>
-          <p>Adam Belfki | belfki.a@northeastern.edu</p>
+              <p>Ali Alyaqoub | alyaqoub.a@northeastern.edu</p>
+              <p>Adam Belfki | belfki.a@northeastern.edu</p>
+            </div>
+            <!--col-->
+          </div>
+          <!--row -->
         </div>
-        <!--col-->
       </div>
-      <!--row -->
     </div>
     <!-- container -->
 
