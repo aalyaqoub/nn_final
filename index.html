@@ -303,6 +303,13 @@
             <li>
               To test this theory out, we will initialize our forzen model to be
               the model that had the concept erased.
+              <div class="text-center">
+                <img
+                  src="images/LoadingModelState.png"
+                  alt="Inference code"
+                  style="width: 1000px"
+                />
+              </div>
             </li>
             <li>
               From this forzen model we will grab the predicted noise of the
@@ -321,6 +328,13 @@
                 alt="External Image"
                 style="width: 300px"
               />. This is will represent the goal the model is trying to reach.
+              <div class="text-center">
+                <img
+                  src="images/NewObjectiveCode.png"
+                  alt="Inference code"
+                  style="width: 1000px"
+                />
+              </div>
             </li>
           </ul>
 
@@ -339,8 +353,9 @@
             removing global concepts, like nudity, using the ESD-u method and
             found that the models produced similar nonsensical images. That
             being said, the smaller models were able to remove styles from the
-            model using ESD-x. We belive that the smaller models are not able to
-            handle erasure through ESD-u
+            model using ESD-x. Additionally, when an artist's style was removed
+            other styles were not affected. We belive that the smaller models
+            are not able to handle erasure through ESD-u
             <b
               >FINISH THOUGHT!!!!!!! ESD-u has ramifications that extend beyond
               the prompt entered and as a result in smaller models the
@@ -452,6 +467,62 @@
               />
               <p style="font-size: 12px">
                 Mini SD with Van Gogh erased using ESD-x
+              </p>
+            </div>
+          </div>
+          <div>
+            <p>
+              <b>Prompt:</b> "A cat by a window {X} style."<br />
+              <b>Erasure Method:</b> "Van Gogh" using ESD-x
+            </p>
+          </div>
+          <div class="row" style="display: table-row">
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/cat-Studio-Ghibli-og.png"
+                alt="Van Gogh ESD-x"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">Mini SD style Studio Ghibli</p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/cat-Studio-Ghibli-no-Van.png"
+                alt="Van Gogh ESD-x"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">
+                Mini SD Van Gogh erased style Studio Ghibli
+              </p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/cat-ClaudeMonet-og.png"
+                alt="Mini SD"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">Mini SD style Claude Monet</p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/cat-Claude-Monet-no-Van.png"
+                alt="CursedNoxattenMini"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">
+                Mini SD Van Gogh erased style Claude Monet
               </p>
             </div>
           </div>
