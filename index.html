@@ -696,11 +696,15 @@
             Based on our findings, we belive the method for erasing concepts
             introduced in the paper is a viable solution for removing unwanted
             content from models post training. That being said, more work needs
-            to be done to find how to implement this on smaller models. This is
-            particularly important with the advancement of on-device Machine
-            Learning models technology, which involves smaller models, and so it
-            will be crucial to develop a way for achieving proper results on
-            these models, similar to ESD on larger models.
+            to be done to find how to implement this on smaller models and fully
+            understand the effects of the fine tunning. Implementing this on
+            smaller models is particularly important with the advancement of
+            on-device Machine Learning models technology, which involves smaller
+            models, and so it will be crucial to develop a way for achieving
+            proper results on these models, similar to ESD on larger models.
+            Additionally, we noticed after removal of a concept the model at
+            times would preffer to produce images with less color and research
+            is needed to understand why this is the case.
           </p>
           <div class="row">
             <div class="col">
