@@ -69,6 +69,14 @@
                 >Erasing Concepts from Diffusion Models</a
               >
             </p>
+            <p>
+              Code Repository Link:
+              <a href="https://github.com/aalyaqoub/nn_final">
+                https://github.com/aalyaqoub/nn_final
+              </a>
+              </br>
+              <p style="color:red;">* The code for the ESD implementation is undisclosed *</p>
+            </p>
           </div>
         </div>
         <div>
@@ -284,7 +292,7 @@
             the probability of generating images with the concept very low.
             Since the concept that was erased is still present in the model, it
             could be possible to relearn concepts by fine-tuning the model with
-            the same objective as the erasure process, but with a constrait that
+            the same objective as the erasure process, but with a constraint that
             prioritizes the generation of images with the concept we desire. A
             traditional way to relearn the concept would be to fine-tune the
             model with data of the concept you desire to relearn. The method we
@@ -329,7 +337,7 @@
           <p>
             Erasing concepts via ESD-u can have a severe affect on smaller
             models' ability to generate images. We tested the erasure of the
-            object "car" on the normal, small, amd mini models and found that
+            object "car" on the normal, small, and mini diffusion models and found that
             the smaller models struggled with removing the object. For both the
             small and the mini model, removing the object by fine-tuning the
             non-cross attention parameters caused the model to lose its ability
@@ -339,13 +347,12 @@
             removing global concepts, like nudity, using the ESD-u method and
             found that the models produced similar nonsensical images. That
             being said, the smaller models were able to remove styles from the
-            model using ESD-x. We belive that the smaller models are not able to
-            handle erasure through ESD-u
-            <b
-              >FINISH THOUGHT!!!!!!! ESD-u has ramifications that extend beyond
-              the prompt entered and as a result in smaller models the
-              ramifications are too severe. SAY BETTER!!!!!!!!!
-            </b>
+            model using ESD-x and continue generating proper images. 
+            We belive that the smaller models are not able to handle erasure through ESD-u 
+            since they are trained using a much smaller number of parameters and weights. A smaller model indicates that complex features are captured jointly by the same weights, 
+            and so modify certain weights to erase concept will inevitably effect the other concepts 
+            learned by the model. In this case, ESD-u has ramifications that extend beyond the scope 
+            of the desired concept to erase.
           </p>
           <div>
             <p>
@@ -551,8 +558,24 @@
           </div>
           <h3>Conclusion</h3>
           <p>
-            Summarize your conclusions, including any implications for
-            applications or impacts on society, or ideas for future work.
+            In conclusion, we have discovered that the ESD-u method for erasing 
+            global concepts or conducting object removal has severe affects on 
+            smaller models, which causes them to simply die and stop generating 
+            acceptable content.
+          </p>
+          <p>
+            Additionally, we learned that relearning concepts or making erased 
+            features resurface is not an easy task, and it might involve serious 
+            retraining efforts which indicate that the erasure successfully achieves 
+            its intended purpose. 
+          </p>
+          <p>
+            For the future, we must invest more efforts into understanding how 
+            the erasure occurs and why it works so well. This is particularly 
+            important with the advancement of on-device Machine Learning models 
+            technology, which involves smaller models, and so it will be crucial to 
+            develop a way for achieving proper results on these models, similar to 
+            ESD on larger models.
           </p>
           <div class="row">
             <div class="col">
