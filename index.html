@@ -74,8 +74,9 @@
               <a href="https://github.com/aalyaqoub/nn_final">
                 https://github.com/aalyaqoub/nn_final
               </a>
-              </br>
-              <p style="color:red;">* The code for the ESD implementation is undisclosed *</p>
+            </p>
+            <p style="color: red">
+              * The code for the ESD implementation is undisclosed *
             </p>
           </div>
         </div>
@@ -111,10 +112,6 @@
               smaller models?
             </li>
             <li>
-              How does the erasure perform when the fine-tuning operation is
-              conducted using unseen data? Is erasure reliant on generalization?
-            </li>
-            <li>
               By erasing a concept, is the model completely unlearning it or is
               it simply being suppressed from being expressed? In either case,
               how easy is it to relearn an erased concept? Does it require the
@@ -129,7 +126,7 @@
             if the user has access to the model weights. Previous methods based
             on filtering datasets are fundamentally costly and not flexible to
             problems discovered after training while filtering generated content
-            can have unintended consequences on the output quality.
+            can easily be circumvented by end users.
           </p>
           <p>
             To address these issues, ESD relies on fine-tuning pre-trained
@@ -292,13 +289,13 @@
             the probability of generating images with the concept very low.
             Since the concept that was erased is still present in the model, it
             could be possible to relearn concepts by fine-tuning the model with
-            the same objective as the erasure process, but with a constraint that
-            prioritizes the generation of images with the concept we desire. A
-            traditional way to relearn the concept would be to fine-tune the
-            model with data of the concept you desire to relearn. The method we
-            are testing has the benefit of not requiring training data of the
-            concept that was erased as the model will depend on the suppressed
-            knowledge of the concept already in its weights.
+            the same objective as the erasure process, but with a constraint
+            that prioritizes the generation of images with the concept we
+            desire. A traditional way to relearn the concept would be to
+            fine-tune the model with data of the concept you desire to relearn.
+            The method we are testing has the benefit of not requiring training
+            data of the concept that was erased as the model will depend on the
+            suppressed knowledge of the concept already in its weights.
           </p>
           <div class="container text-center">
             <img
@@ -351,22 +348,25 @@
           <p>
             Erasing concepts via ESD-u can have a severe affect on smaller
             models' ability to generate images. We tested the erasure of the
-            object "car" on the normal, small, and mini diffusion models and found that
-            the smaller models struggled with removing the object. For both the
-            small and the mini model, removing the object by fine-tuning the
-            non-cross attention parameters caused the model to lose its ability
-            to generate proper images and content. Post fine-tuning, the models'
-            ability to generate any image, including those of other objects, was
-            severely hampered indicating that the model was dead. We also tried
-            removing global concepts, like nudity, using the ESD-u method and
-            found that the models produced similar nonsensical images. That
-            being said, the smaller models were able to remove styles from the
-            model using ESD-x and continue generating proper images. 
-            We belive that the smaller models are not able to handle erasure through ESD-u 
-            since they are trained using a much smaller number of parameters and weights. A smaller model indicates that complex features are captured jointly by the same weights, 
-            and so modify certain weights to erase concept will inevitably effect the other concepts 
-            learned by the model. In this case, ESD-u has ramifications that extend beyond the scope 
-            of the desired concept to erase.
+            object "car" on the normal, small, and mini diffusion models and
+            found that the smaller models struggled with removing the object.
+            For both the small and the mini model, removing the object by
+            fine-tuning the non-cross attention parameters caused the model to
+            lose its ability to generate proper images and content. Post
+            fine-tuning, the models' ability to generate any image, including
+            those of other objects, was severely hampered indicating that the
+            model was dead. We also tried removing global concepts, like nudity,
+            using the ESD-u method and found that the models produced similar
+            nonsensical images. That being said, the smaller models were able to
+            remove styles from the model using ESD-x and continue generating
+            proper images. We belive that the smaller models are not able to
+            handle erasure through ESD-u since they are trained using a much
+            smaller number of parameters and weights. A smaller model indicates
+            that complex features are captured jointly by the same weights, and
+            so modify certain weights to erase concept will inevitably effect
+            the other concepts learned by the model. In this case, ESD-u has
+            ramifications that extend beyond the scope of the desired concept to
+            erase.
           </p>
           <div>
             <p>
@@ -419,6 +419,59 @@
                 style="width: 270px"
               />
               <p style="font-size: 12px">Mini SD with car erased using ESD-u</p>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <b>Showcasing model is dead<br /></b>
+              <b>Erasure Method:</b> "car" using ESD-u
+            </p>
+          </div>
+          <div class="row" style="display: table-row">
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/plane-dead.png"
+                alt="Van Gogh SD"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">A plane in the sky</p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/fish-lake-dead.png"
+                alt="Van Gogh ESD-x"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">A fish in a lake</p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/picnic-dead.png"
+                alt="Mini SD"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">Picnic by lake</p>
+            </div>
+            <div
+              class="col justify-content-center text-center"
+              style="display: table-cell; vertical-align: middle"
+            >
+              <img
+                src="images/image_outputs/graduating-dead.png"
+                alt="CursedNoxattenMini"
+                style="width: 270px"
+              />
+              <p style="font-size: 12px">Friends graduating</p>
             </div>
           </div>
 
@@ -628,24 +681,26 @@
           </div>
           <h3>Conclusion</h3>
           <p>
-            In conclusion, we have discovered that the ESD-u method for erasing 
-            global concepts or conducting object removal has severe affects on 
-            smaller models, which causes them to simply die and stop generating 
+            In conclusion, we have discovered that the ESD-u method for erasing
+            global concepts or conducting object removal has severe affects on
+            smaller models, which causes them to simply die and stop generating
             acceptable content.
           </p>
           <p>
-            Additionally, we learned that relearning concepts or making erased 
-            features resurface is not an easy task, and it might involve serious 
-            retraining efforts which indicate that the erasure successfully achieves 
-            its intended purpose. 
+            Additionally, we learned that relearning concepts or making erased
+            features resurface is not an easy task, and it might involve serious
+            retraining efforts which indicate that the erasure successfully
+            achieves its intended purpose.
           </p>
           <p>
-            For the future, we must invest more efforts into understanding how 
-            the erasure occurs and why it works so well. This is particularly 
-            important with the advancement of on-device Machine Learning models 
-            technology, which involves smaller models, and so it will be crucial to 
-            develop a way for achieving proper results on these models, similar to 
-            ESD on larger models.
+            Based on our findings, we belive the method for erasing concepts
+            introduced in the paper is a viable solution for removing unwanted
+            content from models post training. That being said, more work needs
+            to be done to find how to implement this on smaller models. This is
+            particularly important with the advancement of on-device Machine
+            Learning models technology, which involves smaller models, and so it
+            will be crucial to develop a way for achieving proper results on
+            these models, similar to ESD on larger models.
           </p>
           <div class="row">
             <div class="col">
